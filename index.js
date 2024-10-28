@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 import cors from 'cors'
-
+import AboutRouter from './routes/about.js'
 dotenv.config() 
 const app=express()
 const PORT=process.env.PORT||3000;
@@ -19,19 +19,26 @@ try{await mongoose.connect(process.env.MONGODB_URI)
 
 
 // In-memory cart storage for simplicity (use database for production)
-
+app.set('view engine', 'pug')
+app.set('views', './views') 
 
 app.use(express.json())
 app.use(morgan('dev')) //logger
 app.use(cors())
 app.use(express.urlencoded({extended:true}))
-
+app.use(express.static('public'));
+app.use(express.urlencoded({extended:true}))
 app.get('/', (req,res)=>{
     res.send(`welcome to my API`)})
 
+// app.get('/about',  (req, res) =>{
+//           res.render('about.pug')})
+// app.get('/return',  (req, res) =>{
+//             res.render('return.pug')})  
+
 app.use("/users", UsersRouter);
-app.use("/cart", CheckoutRouter);
-app.use("/api/products", ProductsRouter);
+app.use("/carts", CheckoutRouter);
+app.use("/products", ProductsRouter);
 
 
 //=========Error Middleware======

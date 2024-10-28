@@ -1,17 +1,4 @@
 import mongoose from 'mongoose'
-const data=[
-    {username:'user1',
-    email:'user1@gmail.com',
-    },
-
-    {username:'user2',
-    email:'user2@gmail.com',
-   },
-
-    {username:'user3',
-            email:'user3@gmail.com',
-            },
-    ]
 
 const usersSchema= new mongoose.Schema({
     username:{  type: String,

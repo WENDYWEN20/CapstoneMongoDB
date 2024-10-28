@@ -1,8 +1,8 @@
 import { Router } from "express";
 import Cart from "../models/carts.js";
-
 // In-memory cart storage for simplicity (use database for production)
-let cart = [];
+
+
 const router=new Router()
 router.get('/', async(req,res, next)=>{
  
@@ -11,7 +11,7 @@ router.get('/', async(req,res, next)=>{
     
         if (carts) {
           res.json({ carts });
-          console.log(cart)
+          console.log(carts)
         } else {
           res.json({ message: "No products in cart" });
         }
@@ -22,33 +22,15 @@ router.get('/', async(req,res, next)=>{
 );
 
 
-router.get('/:id',async (req,res)=>{    
-    try{
-        const cart=await Cart.findById(req.params.id)
-        if (cart) {
-            res.json({cart});
-        }else{
-            res.json({message:`No product in cart ${req.params.id}`})
-        }
-        
-    }catch(error){
-        console.log(error)
-    }
-
-})
-
 router.post("/", async (req, res, next) => {
     console.log(req.body);
-    try {
-      const addCart = await Cart.create(req.body);
-      if (addCart) {
-        res.status(201).json({ cart: addCart });
-      } else {
-        res.status(400).json({ message: "Error adding new cart" });
-      }
-    } catch (error) {
-      next(error);
+    const newCart = await Cart.create(req.body);
+    if (newCart) {
+      res.status(201).json({ carts: newCart });
+    } else {
+      res.status(400).json({ message: "Error adding new product" });
     }
+ 
   });
 
 

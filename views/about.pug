@@ -1,0 +1,31 @@
+doctype html 
+html 
+    head 
+        title='Company'
+        link(rel="stylesheet", href="style.css")
+        script(src='/myscript.js')
+        body 
+
+        h1 CapStone Fullstack using Pug 
+        h2 Contact US       
+
+        p Everything we do is rooted in sport. Sport plays an increasingly important role in more and more people’s lives, on and off the field of play. It is central to every culture and society, and is core to our health and happiness. 
+        form(action='/create', method='post')
+        a(href='/download') Download Our Catalog 
+        input(type='text')       
+        <button type="Submit">Subscribe</button>
+
+           form(role='form' method='POST')
+              div.form-group
+                label(for='name') Name:
+                input#name.form-control(type='text', placeholder='name' name='name')
+              div.form-group
+                label(for='email') Email:
+                input#email.form-control(type='email', placeholder='name@email.com' name='email')
+              button.btn.btn-primary(type="submit", name="asdf") Contact Customer Service
+        h3 ADIDAS AG World of Sports
+        h3 Adi-Dassler-Straße 1
+        h3 91074 Herzogenaurach
+        h3 Germany
+
+        
